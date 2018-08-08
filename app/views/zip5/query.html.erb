@@ -1,0 +1,9 @@
+<h1>分析地址</h1>
+<%= form_tag '/zip5/' do %>
+  輸入地址：<%= text_field_tag 'address' %><%= submit_tag "搜尋" %>
+<% end %>
+<p><%= @address.origin_address %></p>
+<p><%= @address.city %></p>
+<p><%= @address.area %></p>
+<p><%= @address.road %></p>
+<p><%= @address.scope %></p>
