@@ -1,9 +1,31 @@
-<h1>分析地址</h1>
-<%= form_tag '/zip5/' do %>
-  輸入地址：<%= text_field_tag 'address' %><%= submit_tag "搜尋" %>
-<% end %>
-<p><%= @address.origin_address %></p>
-<p><%= @address.city %></p>
-<p><%= @address.area %></p>
-<p><%= @address.road %></p>
-<p><%= @address.scope %></p>
+<div class="container"> 
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag('/zip5/', class: "form-inline") do %>
+      <%= label_tag(:address, "地址：") %>
+      <%= text_field_tag(:address, @address.origin_address, class: 'form-control', autofocus: true, placeholder: '台北市中正區重慶南路一段122號', size: 50) %>
+      <%= submit_tag("搜尋", class: "btn btn-primary") %>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <% if not @zip5_addresses.empty? %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>郵遞區號</td>
+          <td>路名</td>
+          <td>投遞範圍</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @zip5_addresses.each do |zip5_address| %>
+          <tr>
+            <td><%= zip5_address.zip5 %></td>
+            <td><%= zip5_address.road %></td>
+            <td><%= zip5_address.scope %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

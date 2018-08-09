@@ -23,7 +23,7 @@ class Address
       @road = String.new("")
     end
 
-    @scope = str
+    @scope = String.new("") if not @scope = str[/[0-9]+/]
   end
 
   private
