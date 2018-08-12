@@ -1,24 +1,29 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# zip5tw
 
 * Ruby version
+2.5.1p57
 
-* System dependencies
+## Getting started
 
-* Configuration
+To get started with the app, clone the repo and then install the needed gems:
 
-* Database creation
+```
+$ bundle install --without production
+```
 
-* Database initialization
+Next, migrate the database:
 
-* How to run the test suite
+```
+$ rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Next, download the data(JSON format) from [政府資料開放平臺](https://data.gov.tw/dataset/5948)
+and rename file to ```zip5.txt```, move it to ```db/```
 
-* Deployment instructions
+seed DB
+```
+$ rails db:seed
+```
 
-* ...
+## License
+[MIT License](http://www.opensource.org/licenses/MIT).
