@@ -29,7 +29,6 @@ $ rails db:seed
 [Heroku website](https://zip5.herokuapp.com/)
 
 ## Todo
-* 特殊地名如：台東縣太麻里鄉北太麻里1號, 澎湖縣馬公市虎井里75號
 * 舊縣市：台北縣，桃園縣，台中縣，台南縣，高雄縣
 
 ## License

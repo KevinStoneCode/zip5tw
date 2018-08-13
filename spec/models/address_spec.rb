@@ -15,7 +15,7 @@ RSpec.describe Address, type: :model do
         address = Address.new("桃園市龜山區忠義路１段870-1號")
         expect(address.city).to eq("桃園市")
         expect(address.area).to eq("龜山區")
-        expect(address.road).to eq("忠義路１段")
+        expect(address.road).to eq("忠義路一段")
         expect(address.scope).to eq("870")
       end
 
@@ -50,7 +50,32 @@ RSpec.describe Address, type: :model do
         expect(address.road).to eq("花崗街")
         expect(address.scope).to eq("44")
       end
-    end   
+    end
+
+    describe "特殊地址" do
+      it "無路名1" do
+        address = Address.new("臺東縣太麻里鄉北太麻里1號")
+        expect(address.city).to eq("臺東縣")
+        expect(address.area).to eq("太麻里鄉")
+        expect(address.road).to eq("北太麻里")
+        expect(address.scope).to eq("1")
+      end
+
+      it "無路名2" do
+        address = Address.new("澎湖縣馬公市虎井75號")
+        expect(address.city).to eq("澎湖縣")
+        expect(address.area).to eq("馬公市")
+        expect(address.road).to eq("虎井")
+        expect(address.scope).to eq("75")
+      end
+
+      it "無路名3" do
+        address = Address.new("澎湖縣馬公市虎井")
+        expect(address.city).to eq("澎湖縣")
+        expect(address.area).to eq("馬公市")
+        expect(address.road).to eq("虎井")
+      end
+    end
 
     describe "更正地址 City的部分" do
       it "台 => 臺" do
@@ -76,6 +101,18 @@ RSpec.describe Address, type: :model do
       it "去除原有郵遞號" do
         address = Address.new("70443台南市北區成功路380號")
         expect(address.city).to eq("臺南市")
+      end
+    end
+
+    describe "更正地址 Road的部分" do
+      it "2段 => 二段" do
+        address = Address.new("台北市大安區敦化南路二段63巷14號")
+        expect(address.road).to eq("敦化南路二段")
+      end
+
+      it "９段 => 九段" do
+        address = Address.new("台北市士林區延平北路９段212號")
+        expect(address.road).to eq("延平北路九段")
       end
     end 
   end
