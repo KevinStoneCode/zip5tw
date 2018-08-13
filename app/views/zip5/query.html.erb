@@ -1,14 +1,16 @@
 <div class="container"> 
   <div class="col-md-6 col-md-offset-3">
     <%= form_tag('/zip5/', class: "form-inline") do %>
-      <%= label_tag(:address, "地址：") %>
-      <%= text_field_tag(:address, @address.origin_address, class: 'form-control', autofocus: true, placeholder: '台北市中正區重慶南路一段122號', size: 50) %>
+      <%= label_tag(:address, '地址：') %>
+      <%= text_field_tag(:address, '', class: 'form-control', autofocus: true, placeholder: '台北市中正區重慶南路一段122號', size: 50) %>
       <%= submit_tag("搜尋", class: "btn btn-primary") %>
     <% end %>
   </div>
 </div>
 <div class="container">
   <% if not @zip5_addresses.empty? %>
+    <h4>查詢地址：<%= @address.origin_address %></h4>
+    <h4>修正地址：<%= "#{@address.city}#{@address.area}#{@address.road}#{@address.origin_scope}" %></h4>
     <table class="table table-hover">
       <thead>
         <tr>

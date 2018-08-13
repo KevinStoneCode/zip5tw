@@ -115,5 +115,37 @@ RSpec.describe Address, type: :model do
         expect(address.road).to eq("延平北路九段")
       end
     end 
+
+    describe "舊五都" do
+      it "台北縣" do 
+        address = Address.new("台北縣板橋市四川路一段334號")
+        expect(address.city).to eq("新北市")
+        expect(address.area).to eq("板橋區")
+      end
+
+      it "桃園縣" do
+        address = Address.new("桃園縣八德市介壽路二段636號")
+        expect(address.city).to eq("桃園市")
+        expect(address.area).to eq("八德區")
+      end
+
+      it "台中縣" do
+        address = Address.new("台中縣沙鹿鎮中興路306號")
+        expect(address.city).to eq("臺中市")
+        expect(address.area).to eq("沙鹿區")
+      end 
+
+      it "台南縣" do
+        address = Address.new("台南縣柳營鄉八翁村107-1號")
+        expect(address.city).to eq("臺南市")
+        expect(address.area).to eq("柳營區")
+      end 
+
+      it "高雄縣" do
+        address = Address.new("高雄縣路竹鄉中山南路350號")
+        expect(address.city).to eq("高雄市")
+        expect(address.area).to eq("路竹區")
+      end 
+    end
   end
 end

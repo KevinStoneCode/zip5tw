@@ -3,6 +3,7 @@ class Address
 
   def initialize(str)
     str = String.new("") if str.nil?
+    str = str.strip
     @origin_address = String.new(str)
 
     if ind = str.index("縣") || ind = str.index("市")
@@ -13,7 +14,7 @@ class Address
     end
 
     if ind = str.index("鄉") || ind = str.index("鎮") || ind = str.index("市") || ind = str.index("區")
-      @area = str.slice!(0..ind)
+      @area = correct_area(@city, str.slice!(0..ind))
     else
       @area = String.new("")
     end
@@ -48,12 +49,29 @@ class Address
     str = str[/[^0-9]+/]
     # 俗體轉繁體
     str = str.sub("台", "臺")
+    
+    # 舊五都
+    str = str.sub("臺北縣", "新北市")
+    str = str.sub("桃園縣", "桃園市")
+    str = str.sub("中縣", "中市")
+    str = str.sub("南縣", "南市")
+    str = str.sub("高雄縣", "高雄市")
+
     if str.size == 2
       str = str.sub("北市", "臺北市")
       str = str.sub("中市", "臺中市")
       str = str.sub("南市", "臺南市")
     end
     return str
+  end
+
+  def correct_area(city_str, area_str)
+    if city_str.index("市") 
+      area_str = area_str.sub("鄉", "區")
+      area_str = area_str.sub("鎮", "區")
+      area_str = area_str.sub("市", "區")
+    end
+    return area_str
   end
 
   def correct_road(str)
