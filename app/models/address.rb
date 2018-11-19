@@ -25,7 +25,7 @@ class Address
     else
       @road = String.new("")
     end
-
+    # 沒有路名只有村莊名的情況
     if @road.empty? && (not str.empty?)
       if ind = str.index(/[0-9]/)
         @road = str.slice!(0..ind-1)
@@ -35,6 +35,7 @@ class Address
     end
 
     @origin_scope = String.new("") if not @origin_scope = String.new(str)
+    # 只取第一個數字
     @scope = String.new("") if not @scope = str[/[0-9]+/]
   end
 
